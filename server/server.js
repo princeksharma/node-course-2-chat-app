@@ -27,13 +27,23 @@ io.on('connection',(socket) =>{
 // });
 
 socket.emit('newMessage', {
-  from : 'prince',
-  text: 'Hey Wassup ',
-  createAt: 1234
+  from : 'Admin',
+  text: 'Welcome to chat app ',
+  createAt: new Date().getTime()
+});
+
+socket.broadcast.emit('newMessage',{
+  from : 'Admin',
+  text: 'New User joined'
 });
 
 socket.on('createMessage',(message) =>{
   console.log('create Message', message);
+  io.emit('newMessage',{
+    from: message.from,
+    text: message.text,
+    createdAt : new Date().getTime()
+  })
 });
 
 socket.on('disconnect',() =>{
