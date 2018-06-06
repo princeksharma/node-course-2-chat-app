@@ -23,9 +23,9 @@ socket.emit('newMessage', generateMessage('Admin', 'Welcome to chat app'));
 socket.broadcast.emit('newMessage',generateMessage('Admin','New User joined'));
 
 socket.on('createMessage',(message,callback) =>{
-  console.log('create Message', message);
+  console.log('createMessage', message);
   io.emit('newMessage',generateMessage(message.from,message.text));
-  callback('This is from the server');
+  callback();
 });
 
 socket.on('createLocationMessage',(coords) => {
