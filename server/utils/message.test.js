@@ -25,6 +25,4 @@ describe('generateMessage', () =>{
       expect(message).toInclude({from, url});
     });
   });
-
-
 });
